@@ -1,19 +1,32 @@
 {
-  "name": "generators",
-  "version": "0.1.0",
-  "description": "[![Latest Version on Packagist][ico-version]][link-packagist] [![Software License][ico-license]](LICENSE.md) [![Build Status][ico-travis]][link-travis] [![Coverage Status][ico-scrutinizer]][link-scrutinizer] [![Quality Score][ico-code-quality]][link-code-quality] [![Total Downloads][ico-downloads]][link-downloads]",
-  "main": "gulpfile.js",
-  "scripts": {
+  "name"        : "generators",
+  "version"     : "0.1.0",
+  "description" : "",
+  "main"        : "gulpfile.js",
+  "scripts"     : {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
+  "repository"  : {
     "type": "git",
-    "url": "git+https://github.com/onderdelen/generators.git"
+    "url" : "git+https://github.com/onderdelen/generators.git"
   },
-  "author": "onderdelen",
-  "license": "ISC",
-  "bugs": {
+  "author"      : "onderdelen",
+  "license"     : "ISC",
+  "bugs"        : {
     "url": "https://github.com/onderdelen/generators/issues"
   },
-  "homepage": "https://github.com/onderdelen/generators#readme"
+  "homepage"    : "https://github.com/onderdelen/generators#readme",
+  "dependencies": {
+    "gulp"             : "^3.9.0",
+    "gulp-conflict"    : "^0.4.0",
+    "gulp-install"     : "^0.6.0",
+    "gulp-rename"      : "^1.2.2",
+    "gulp-template"    : "^3.1.0",
+    "iniparser"        : "^1.0.5",
+    "inquirer"         : "^0.11.0",
+    "moment"           : "^2.10.6",
+    "string"           : "^3.3.1",
+    "underscore.string": "^3.2.2",
+    "yargs"            : "^3.30.0"
+  }
 }
