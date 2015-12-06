@@ -1,0 +1,45 @@
+{
+  "name"             : "<%= author_username %>/<%= package_name %>",
+  "description"      : "<%= package_description %>",
+  "keywords"         : [
+    "<%= author_username %>",
+    "<%= package_name %>"
+  ],
+  "homepage"         : "https://github.com/<%= author_username_alt %>/<%= package_name %>",
+  "license"          : "MIT",
+  "authors"          : [
+    {
+      "name"    : "<%= author_name %>",
+      "email"   : "<%= author_email %>",
+      "homepage": "<%= author_website %>",
+      "role"    : "Developer"
+    }
+  ],
+  "require"          : {
+    "php"                 : ">=5.5.9",
+    "illuminate/support"  : "5.1.*@dev",
+    "illuminate/contracts": "5.1.*@dev"
+  },
+  "require-dev"      : {
+    "fzaninotto/faker": "~1.4",
+    "mockery/mockery" : "0.9.*",
+    "phpunit/phpunit" : "~4.0",
+    "phpspec/phpspec" : "~2.1"
+  },
+  "autoload"         : {
+    "classmap": [
+      "databases/seeds",
+      "src/controllers",
+      "tests"
+    ],
+    "psr-4"   : {
+      "<%= author_username_sc %>\\<%= package_name_sc %>\\": "src"
+    }
+  },
+  "autoload-dev"     : {
+    "psr-4": {
+      "<%= author_username_sc %>\\<%= package_name_sc %>\\Test\\": "tests"
+    }
+  },
+  "minimum-stability": "stable"
+}

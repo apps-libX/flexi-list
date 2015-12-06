@@ -1,32 +1,24 @@
 {
-  "name"        : "generators",
-  "version"     : "0.1.0",
-  "description" : "",
-  "main"        : "gulpfile.js",
-  "scripts"     : {
+  "name"           : "generators",
+  "version"        : "0.1.0",
+  "description"    : "",
+  "main"           : "gulpfile.js",
+  "scripts"        : {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository"  : {
+  "repository"     : {
     "type": "git",
-    "url" : "git+https://github.com/onderdelen/generators.git"
+    "url" : "https://github.com/consigliere/generators"
   },
-  "author"      : "onderdelen",
-  "license"     : "ISC",
-  "bugs"        : {
-    "url": "https://github.com/onderdelen/generators/issues"
-  },
-  "homepage"    : "https://github.com/onderdelen/generators#readme",
-  "dependencies": {
-    "gulp"             : "^3.9.0",
-    "gulp-conflict"    : "^0.4.0",
-    "gulp-install"     : "^0.6.0",
-    "gulp-rename"      : "^1.2.2",
-    "gulp-template"    : "^3.1.0",
-    "iniparser"        : "^1.0.5",
-    "inquirer"         : "^0.11.0",
-    "moment"           : "^2.10.6",
-    "string"           : "^3.3.1",
-    "underscore.string": "^3.2.2",
-    "yargs"            : "^3.30.0"
+  "author"         : "anonymoussc",
+  "license"        : "MIT",
+  "devDependencies": {
+    "del"          : "^1.1.1",
+    "gulp"         : "^3.8.8",
+    "gulp-rename"  : "^1.2.0",
+    "gulp-template": "^3.0.0",
+    "moment"       : "^2.9.0",
+    "string"       : "^3.0.0",
+    "yargs"        : "^3.4.5"
   }
 }

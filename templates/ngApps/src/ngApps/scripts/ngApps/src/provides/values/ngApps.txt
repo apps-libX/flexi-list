@@ -1,0 +1,6 @@
+/**
+ * Created by <%= author_username %> on <%= dateTime.now %>.
+ */
+
+//<%= package_name_cc %>
+//    .value('{name}', '{value}');

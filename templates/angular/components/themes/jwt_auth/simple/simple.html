@@ -1,0 +1,43 @@
+<div id="sg-jwt-auth-layout-container" ng-controller="JwtAuthSimpleCtrl" layout="column" ng-cloak>
+
+    <!--left-->
+    <section layout="row" flex>
+        <div id="sg-jwt-auth-sidenav">
+            <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+                <md-toolbar class="md-primary md-hue-3">
+                    <h1 class="md-toolbar-tools">Sidenav [Left]</h1>
+                </md-toolbar>
+                <md-toolbar class="md-primary md-hue-3">
+                    <h1 class="md-toolbar-tools">Sidenav [Left]</h1>
+                </md-toolbar>
+                <div ui-view="left"></div>
+            </md-sidenav>
+        </div>
+
+        <!--main-->
+        <md-content flex>
+            <div layout="column" layout-fill layout-align="end center">
+                <md-toolbar md-scroll-shrink class="md-primary md-hue-3">
+                    <div ui-view="header"></div>
+                </md-toolbar>
+
+                <md-content flex>
+                    <div ui-view="main"></div>
+                </md-content>
+            </div>
+
+            <div flex></div>
+        </md-content>
+
+        <!--right-->
+        <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+            <md-toolbar class="md-primary md-hue-2">
+                <h1 class="md-toolbar-tools">Sidenav [Right]</h1>
+            </md-toolbar>
+            <div ui-view="right"></div>
+        </md-sidenav>
+    </section>
+
+    <!--footer-->
+    <div ui-view="footer"></div>
+</div>

@@ -1,0 +1,5 @@
+/**
+ * Created by <%= author_username %> on <%= dateTime.now %>.
+ */
+
+angular.module('<%= package_name_cc %>.appsComponents', ['']);

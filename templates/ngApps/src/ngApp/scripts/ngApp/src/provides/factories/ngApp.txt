@@ -1,0 +1,20 @@
+/**
+ * Created by <%= author_username %> on <%= dateTime.now %>.
+ *
+ * @ngdoc service
+ * @name <%= author_username_cc %>.<%= package_name_cc %>.<%= package_name_cc %>
+
+ * @description
+ * _Update the description and dependencies._
+ *
+ * @requires $replace
+ *
+ */
+
+<%= package_name_cc %>.factory('<%= package_name_cc %>', [function () {
+
+    'use strict';
+
+    return {};
+
+}]);

@@ -1,0 +1,46 @@
+/**
+ * Created by <%= author_username %> on <%= dateTime.now %>.
+ *
+ * @module test.<%= author_username_cc %>.<%= package_name_cc %>
+ * @name <%= package_name_cc %>
+
+ * @description
+ * Tests for <%= package_name_cc %> under <%= author_username_cc %>.<%= package_name_cc %>
+ * _Test description._
+ */
+
+
+describe('Directive: <%= author_username_cc %>.<%= package_name_cc %>.<%= package_name_cc %>', function () {
+
+    'use strict';
+
+    var ele, scope;
+
+    beforeEach(module('<%= author_username_cc %>.<%= package_name_cc %>'));
+    beforeEach(inject(function ($compile, $rootScope) {
+        scope = $rootScope.$new();
+
+        //update the line below!
+        ele = angular.element('<Replace with directive>');
+        //update the above line if you haven't!
+        $compile(ele)(scope);
+        scope.$apply();
+    }));
+
+    /**
+     * @description
+     * Sample test case to check if HTML rendered by the directive is non empty
+     * */
+    it('should not render empty html', function () {
+        scope.$apply(function () {
+
+            /**
+             * Set the scope properties here.
+             * scope.desc = 'test hostname';
+             * scope.status = 'valid';
+             *
+             */
+        });
+        expect(ele.html()).not.toBe('');
+    });
+});

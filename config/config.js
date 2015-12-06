@@ -1,12 +1,17 @@
 /**
- * Created by anonymoussc on 27/11/15 21:16.
+ * Created by anonymoussc on 08/03/15 9:43.
  */
+
+'use strict';
 
 var
     config = {
+        // packages structure type, option available league, composer, laravel,
         generator         : '',
+        // path to workspace directory
         workspaces        : './../../../app_components',
-        templatesDirectory: './templates'
+        // path to template directory
+        templatesDirectory: './templates',
     };
 
 module.exports = config;

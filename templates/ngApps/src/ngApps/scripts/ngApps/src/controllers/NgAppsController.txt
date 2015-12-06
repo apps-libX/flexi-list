@@ -1,0 +1,18 @@
+/**
+ * Created by <%= author_username %> on <%= dateTime.now %>.
+ *
+ * @ngdoc controller
+ * @name <%= author_username_cc %>.<%= package_name_cc %>.controller:<%= package_name_sc %>Controller
+ *
+ * @description
+ * _Update the description and dependencies._
+ *
+ * @requires $scope
+ */
+
+
+<%= package_name_cc %>.controller('<%= package_name_sc %>Controller', ['$scope', function ($scope) {
+
+    'use strict';
+
+}]);

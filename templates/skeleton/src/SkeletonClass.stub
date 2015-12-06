@@ -1,0 +1,30 @@
+<?php
+/**
+ * Created by <%= author_username %> on <%= dateTime.now %>.
+ */
+
+namespace <%= author_username_sc %>\<%= package_name_sc %>;
+
+
+class <%= package_name_sc %>Class
+{
+    /**
+     * Create a new <%= package_name_sc %> Instance
+     */
+    public function __construct()
+    {
+        // constructor body
+    }
+
+    /**
+     * Friendly welcome
+     *
+     * @param string $phrase Phrase to return
+     *
+     * @return string Returns the phrase passed in
+     */
+    public function echoPhrase($phrase)
+    {
+        return $phrase;
+    }
+}

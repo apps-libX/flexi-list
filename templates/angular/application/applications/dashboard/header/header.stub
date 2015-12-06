@@ -1,0 +1,11 @@
+/**
+ * Created by <%= author_username %> on <%= dateTime.now %>.
+ */
+
+(function() {
+    'use strict';
+
+    angular.module('app.controllers').controller('DashboardHeaderCtrl', ['$scope', function($scope) {
+
+    }]);
+})();

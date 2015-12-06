@@ -1,0 +1,26 @@
+/**
+ * Created by <%= author_username %> on <%= dateTime.now %>.
+ */
+
+<%= package_name_cc %>.config([
+    '$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+
+        'use strict';
+
+        // $urlRouterProvider.otherwise('/');
+
+        $stateProvider
+            //.state('main', {
+            //    url         : '/',
+            //    templateUrl : '/<%= package_name %>'
+            //})
+            .state('<%= package_name_cc %>', {
+                url         : '/<%= package_name %>',
+                templateUrl : '/<%= package_name %>'
+            });
+            //.state('<%= package_name_cc %>Dashboard.<%= package_name_cc %>', {
+            //    url         : '/dashboard/<%= package_name %>',
+            //    templateUrl : '/dashboard/<%= package_name %>'
+            //});
+    }
+]);
