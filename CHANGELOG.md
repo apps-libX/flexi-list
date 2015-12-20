@@ -1,6 +1,6 @@
 # Changelog
 
-All Notable changes to `generators` will be documented in this file
+All Notable changes to `flexi-list` will be documented in this file
 
 ## NEXT - YYYY-MM-DD
 

@@ -1,5 +1,0 @@
-/**
- * Created by <%= author_username %> on <%= dateTime.now %>.
- */
-
-var <%= package_name_cc %> = angular.module('<%= author_username_cc %>.<%= package_name_cc %>', ['<%= package_name_cc %>.appsComponents']);

@@ -1,0 +1,45 @@
+{
+  "name"             : "onderdelen/flexi-list",
+  "description"      : "flexi-list",
+  "keywords"         : [
+    "onderdelen",
+    "flexi-list"
+  ],
+  "homepage"         : "https://github.com/onderdelen/flexi-list",
+  "license"          : "MIT",
+  "authors"          : [
+    {
+      "name"    : "anonymoussc",
+      "email"   : "50c5ac69@opayq.com",
+      "homepage": "https://github.com/onderdelen/",
+      "role"    : "Developer"
+    }
+  ],
+  "require"          : {
+    "php"                 : ">=5.4.0",
+    "illuminate/support"  : "5.1.*@dev",
+    "illuminate/contracts": "5.1.*@dev"
+  },
+  "require-dev"      : {
+    "fzaninotto/faker": "~1.4",
+    "mockery/mockery" : "0.9.*",
+    "phpunit/phpunit" : "~4.0",
+    "phpspec/phpspec" : "~2.1"
+  },
+  "autoload"         : {
+    "classmap": [
+      "database/seeds",
+      "src/controllers",
+      "tests"
+    ],
+    "psr-4"   : {
+      "Onderdelen\\FlexiList\\": "src"
+    }
+  },
+  "autoload-dev"     : {
+    "psr-4": {
+      "Onderdelen\\FlexiList\\Test\\": "tests"
+    }
+  },
+  "minimum-stability": "stable"
+}
