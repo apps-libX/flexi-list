@@ -13,6 +13,6 @@
     'use strict';
 
     angular
-        .module('flexiList', []);
+        .module('fxList', ['flexiList']);
 
 })();
