@@ -7,7 +7,11 @@
 (function() {
     'use strict';
 
-    angular
-        .module('fxList', ['flexiList']);
+    angular.module('fxList', [
+        'flexiList',
+        'gettext',
+        'ui.bootstrap',
+        'treasure-overlay-spinner'
+    ]);
 
 })();
