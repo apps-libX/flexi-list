@@ -25,7 +25,7 @@ class FlexiListServiceProvider extends ServiceProvider
         $componenentsFileName = with(new ReflectionClass('\Onderdelen\FlexiList\FlexiListServiceProvider'))->getFileName();
         $componenentsPath = dirname($componenentsFileName);
 
-        $this->loadViewsFrom($componenentsPath . '/../views', 'appFoundation');
+        $this->loadViewsFrom($componenentsPath . '/../views', 'flexiList');
 
         //include $componenentsPath . '/../routes.php';
 
