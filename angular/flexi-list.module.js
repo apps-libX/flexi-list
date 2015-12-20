@@ -4,11 +4,6 @@
  * @author anonymous
  */
 
-/*
- * flexiList
- *
- * @module
- */
 (function() {
     'use strict';
 
