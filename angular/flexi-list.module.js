@@ -1,37 +1,18 @@
 /**
- * Created by anonymous on 13/12/15 11:09.
+ * Created on 20/12/15 12:09.
+ *
+ * @author anonymous
  */
 
+/*
+ * flexiList
+ *
+ * @module
+ */
 (function() {
     'use strict';
 
     angular
-        .module('appFoundation', [
-            /* Angularjs */
-            'ngMaterial',
-            'ngMessages',
-            'ngResource',
-
-            /* 3rd-party */
-            'ui.router',
-            'satellizer',
-            'restangular',
-            'ngStorage',
-            'angular-loading-bar',
-            'ngMdIcons',
-            'toastr',
-            'vAccordion',
-
-            /* Intra-services */
-            'inServices.exception',
-            'inServices.logger',
-            'inServices.routes'
-        ]);
-
-    angular.module('widgets', []);
-
-    angular.module('inServices.exception', []);
-    angular.module('inServices.logger', []);
-    angular.module('inServices.routes', []);
+        .module('flexiList', []);
 
 })();
