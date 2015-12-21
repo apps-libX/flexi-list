@@ -65,7 +65,8 @@ flexiList.factory('flexiListService', ['$q', '$http', '$log', '$filter', functio
 			{
 				if (options.method == 'GET')
 				{	
-					var v_url = options.listURL + '?' + jQuery.param(post_data);
+					//var v_url = options.listURL + '?' + jQuery.param(post_data);
+					var v_url = options.listURL;
 					if (options.log.debug) $log.log(options.log.id + ' URL: ' + v_url);
 				
 					$http({
