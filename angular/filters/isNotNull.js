@@ -32,9 +32,10 @@
 })();
 
 /*
- flexiList.filter('is_not_null', function() {
- return function(value, pattern) {
- if (value == undefined) return false;
- return (value.toString().length > 0);
- };
- });*/
+flexiList.filter('is_not_null', function() {
+    return function(value, pattern) {
+        if (value == undefined) return false;
+        return (value.toString().length > 0);
+    };
+});
+*/

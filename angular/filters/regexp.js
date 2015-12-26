@@ -31,12 +31,12 @@
     }
 
 })();
-
 /*
- flexiList.filter('regexp', function() {
- return function(value, pattern, options) {
- if (value == undefined || pattern == undefined) return true;
- var regex = new RegExp(pattern, options.modifier);
- return regex.test(value);
- };
- });*/
+flexiList.filter('regexp', function() {
+    return function(value, pattern, options) {
+        if (value == undefined || pattern == undefined) return true;
+        var regex = new RegExp(pattern, options.modifier);
+        return regex.test(value);
+    };
+});
+*/
