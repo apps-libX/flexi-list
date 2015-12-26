@@ -20,7 +20,7 @@
     /* @ngInject */
     function flMain() {
         var directive = {
-            bindToController: true,
+            //bindToController: true,
             controller      : flMainCtrl,
             //controllerAs    : 'vm',
             link            : link,
