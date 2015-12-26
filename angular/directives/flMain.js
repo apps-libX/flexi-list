@@ -15,10 +15,10 @@
         .module('flexiList')
         .directive('flMain', flMain);
 
-    flMain.$inject = ['dependency'];
+    flMain.$inject = [];
 
     /* @ngInject */
-    function flMain(dependency) {
+    function flMain() {
         var directive = {
             bindToController: true,
             controller      : flMainCtrl,
@@ -39,7 +39,8 @@
 
     /* @ngInject */
     function flMainCtrl($scope, $log, $q, $http, $filter, flexiListService) {
-        var vm   = this;
+        var vm;
+        vm       = this;
         vm.title = 'flMainCtrl';
 
         var options = {
@@ -84,7 +85,10 @@
 
         function init() {
             if (!$scope.list) {
-                if (options.log.err) $log.log(options.log.id + ' - undefined scope.');
+                if (options.log.err) {
+                    $log.log(options.log.id + ' - undefined scope.');
+                }
+
                 return;
             }
 
@@ -98,7 +102,9 @@
 
                 angular.extend(options, p_options);
 
-                if (offset_reset) offset = 0;
+                if (offset_reset) {
+                    offset = 0;
+                }
 
                 loadData();
             };
@@ -137,9 +143,13 @@
              */
             $scope.list.paginationEnabled = function() {
 
-                if (!options.pagination)    return false;
+                if (!options.pagination) {
+                    return false;
+                }
 
-                if ($scope.list.records.length > 0) return true;
+                if ($scope.list.records.length > 0) {
+                    return true;
+                }
 
                 return false;
             };
@@ -162,14 +172,25 @@
              * @public
              */
             $scope.list.isEmpty = function() {
-                return ($scope.list.records.length == 0 && $scope.list.loadedDS);
+                return ($scope.list.records.length === 0 && $scope.list.loadedDS);
             };
 
-            if (options.sortable) makeScopeSortable();
-            if (options.pagination) makeScopePagination();
-            if (options.selectable) makeScopeSelectable();
-            if (options.autoload) loadData();
-        };
+            if (options.sortable) {
+                makeScopeSortable();
+            }
+
+            if (options.pagination) {
+                makeScopePagination();
+            }
+
+            if (options.selectable) {
+                makeScopeSelectable();
+            }
+
+            if (options.autoload) {
+                loadData();
+            }
+        }
 
         //************************************************************
         // Sortable
@@ -181,16 +202,22 @@
              * @public
              */
             $scope.list.isSortedAsc = function(field) {
-                if (!sorted)    return false;
-                return (sorted[field] == 'asc');
+                if (!sorted) {
+                    return false;
+                }
+
+                return (sorted[field] === 'asc');
             };
 
             /** Returns true whenever the list is sorted "desc" by the given field
              * @public
              */
             $scope.list.isSortedDesc = function(field) {
-                if (!sorted)    return false;
-                return (sorted[field] == 'desc');
+                if (!sorted) {
+                    return false;
+                }
+
+                return (sorted[field] === 'desc');
             };
         }
 
@@ -227,9 +254,11 @@
         function transformSorted() {
             var arr = [];
 
-            if (options.orderby)
-                for (var i = 0; i < options.orderby.length; i++)
+            if (options.orderby) {
+                for (var i = 0; i < options.orderby.length; i++) {
                     arr[options.orderby[i].field] = options.orderby[i].type;
+                }
+            }
 
             return arr;
         }
@@ -246,7 +275,10 @@
              * @public
              */
             $scope.list.isRecordSelected = function(record) {
-                if (!record.flSelected)    return false;
+                if (!record.flSelected) {
+                    return false;
+                }
+
                 return true;
             };
 
@@ -254,16 +286,22 @@
              * @public
              */
             $scope.list.recordToggleSelect = function(record) {
-                if (record.flSelected) recordUnselect(record, false);
-                else recordSelect(record, false);
+                if (record.flSelected) {
+                    recordUnselect(record, false);
+                } else {
+                    recordSelect(record, false);
+                }
             };
 
             /** Triggers the validation of record selection after changing record.flSelected model.
              * @public
              */
             $scope.list.enforceSelection = function(record) {
-                if (record.flSelected) recordSelect(record, true);
-                else recordUnselect(record, true);
+                if (record.flSelected) {
+                    recordSelect(record, true);
+                } else {
+                    recordUnselect(record, true);
+                }
             };
 
             /** Returns the next selection state for all record
@@ -279,7 +317,9 @@
                  */
                 $scope.list.toggleSelectAll = function() {
 
-                    if (!$scope.list.records)    return;
+                    if (!$scope.list.records) {
+                        return;
+                    }
 
                     // Reverse selected state and apply
                     allSelected = (!allSelected);
@@ -301,47 +341,62 @@
 
                 var selection = [];
 
-                if ($scope.list.records)
+                if ($scope.list.records) {
                     angular.forEach($scope.list.records, function(record) {
-                        if (record.flSelected)
+                        if (record.flSelected) {
                             selection.push(record);
+                        }
                     });
+                }
 
                 return selection;
             };
-        };
+        }
 
         function selectionApplyAll(selected, current_page) {
-            if (current_page)
+            if (current_page) {
                 angular.forEach($scope.list.records, function(record) {
-                    if (selected)
+                    if (selected) {
                         recordSelect(record, false);
-                    else
+                    }
+                    else {
                         recordUnselect(record, false);
+                    }
                 });
-            else
+            }
+            else {
                 angular.forEach($scope.list.client_ds, function(record) {
-                    if (selected)
+                    if (selected) {
                         recordSelect(record, false);
-                    else
+                    }
+                    else {
                         recordUnselect(record, false);
+                    }
                 });
+            }
 
             allSelected = selected;
-        };
+        }
 
         function recordSelect(record, force) {
-            if (record.readonly) return;
+            if (record.readonly) {
+                return;
+            }
 
-            if (!force)
-                if (record.flSelected) return;
+            if (!force) {
+                if (record.flSelected) {
+                    return;
+                }
+            }
 
             if (options.multiselect) {
                 record.flSelected = true;
                 selectedCount++;
-            }
-            else {
-                if (selectedRecord) selectedRecord.flSelected = false;
+            } else {
+                if (selectedRecord) {
+                    selectedRecord.flSelected = false;
+                }
+
                 record.flSelected = true;
                 selectedRecord    = record;
                 selectedCount     = 1;
@@ -349,16 +404,20 @@
         }
 
         function recordUnselect(record, force) {
-            if (record.readonly) return;
+            if (record.readonly) {
+                return;
+            }
 
-            if (!force)
-                if (!record.flSelected) return;
+            if (!force) {
+                if (!record.flSelected) {
+                    return;
+                }
+            }
 
             if (options.multiselect) {
                 record.flSelected = false;
                 selectedCount--;
-            }
-            else {
+            } else {
                 selectedRecord    = false;
                 record.flSelected = false;
                 selectedCount     = 0;
@@ -384,18 +443,24 @@
             $scope.list.setPageSize = function(size) {
                 options.pagesize = size;
                 getPage(1);
-            }
+            };
         }
 
         function getPage(pagenum) {
-            if (pagenum < 1) return;
-            if (pagenum > $scope.list.pagination_info.totalpages) return;
+            if (pagenum < 1) {
+                return;
+            }
+
+            if (pagenum > $scope.list.pagination_info.totalpages) {
+                return;
+            }
 
             $scope.$emit('flStartOp', {op: 'getPage'});
 
             // Unselect records that are not in the current page
-            if (options.selectable && options.pagination_clear_selection)
+            if (options.selectable && options.pagination_clear_selection) {
                 selectionApplyAll(false, false);
+            }
 
             offset = (pagenum - 1) * options.pagesize;
 
@@ -403,8 +468,7 @@
                 $scope.list.records         = flexiListService.pageDataset($scope.list.client_ds, offset, options.pagesize, options.log);
                 $scope.list.pagination_info = flexiListService.getPagination(ds_length, offset, options.pagesize, options.pages);
                 $scope.$emit('flComplete', {result: 'OK'});
-            }
-            else {
+            } else {
                 loadData();
             }
         }
@@ -422,7 +486,9 @@
 
             if (!$scope.list.loadedDS) {
                 $scope.list.loadedDS = [];
-                if (options.log.err) $log.log(options.log.id + ' - Load Error.');
+                if (options.log.err) {
+                    $log.log(options.log.id + ' - Load Error.');
+                }
             }
 
             $scope.list.client_ds = flexiListService.processDataset(
@@ -438,8 +504,7 @@
             if (options.pagination) {
                 $scope.list.records         = flexiListService.pageDataset($scope.list.client_ds, offset, options.pagesize, options.log);
                 $scope.list.pagination_info = flexiListService.getPagination(ds_length, offset, options.pagesize, options.pages);
-            }
-            else {
+            } else {
                 $scope.list.records = $scope.list.client_ds;
             }
 
@@ -460,8 +525,7 @@
             if (options.pagination) {
                 $scope.list.records         = flexiListService.pageDataset($scope.list.client_ds, offset, options.pagesize, options.log);
                 $scope.list.pagination_info = flexiListService.getPagination(ds_length, offset, options.pagesize, options.pages);
-            }
-            else {
+            } else {
                 $scope.list.records = $scope.list.client_ds;
             }
         }
@@ -476,9 +540,13 @@
             promise.then(
                 function(data) {
 
-                    if (options.log.debug) $log.log(options.log.id + ' - Data: ' + $filter('json')(data));
+                    if (options.log.debug) {
+                        $log.log(options.log.id + ' - Data: ' + $filter('json')(data));
+                    }
 
-                    if (!data)    data = [];
+                    if (!data) {
+                        data = [];
+                    }
 
                     $scope.list.loadedDS = data;
                     processDataset();
@@ -487,13 +555,16 @@
                     $scope.$emit('flComplete', {result: 'OK'});
                 },
                 function(reason) {
-                    if (options.log.err) $log.log(options.log.id + ' - Load Error: ' + reason);
+                    if (options.log.err) {
+                        $log.log(options.log.id + ' - Load Error: ' + reason);
+                    }
+
                     $scope.list.loadedDS = [];
                     $scope.list.records  = [];
                     $scope.$emit('flComplete', {result: 'ERROR', message: reason});
                 }
             );
-        };
+        }
 
         function loadFromServer() {
             var ajax = flexiListService.requestServer(options, offset);
@@ -502,35 +573,45 @@
                 function(data) {
 
                     $scope.list.server_response = data;
-                    if (options.log.debug) $log.log(options.log.id + ' - Data: ' + $filter('json')(data));
+                    if (options.log.debug) {
+                        $log.log(options.log.id + ' - Data: ' + $filter('json')(data));
+                    }
 
                     if (!data) {
                         data = {};
-                    }
-                    else {
-                        if (data.result != 'OK')
-                            if (options.log.err)
+                    } else {
+                        if (data.result !== 'OK') {
+                            if (options.log.err) {
                                 $log.log(options.log.id + ' - data.result: ' + data.result);
+                            }
+                        }
                     }
 
-                    if (!data.records) data.records = [];
+                    if (!data.records) {
+                        data.records = [];
+                    }
 
                     $scope.list.loadedDS = data.records;
 
                     // Follow the server response if a where clause is informed
-                    if (data.where) options.where = data.where;
+                    if (data.where) {
+                        options.where = data.where;
+                    }
 
                     // Follow the server response if an orderby clause is informed
-                    if (data.orderby)
+                    if (data.orderby) {
                         setOrderby(data.orderby);
-                    else
+                    }
+                    else {
                         sorted = transformSorted();
+                    }
 
                     // Follow the server response if a rowcount is informed (it should be informed)
-                    if (data.rowcount)
+                    if (data.rowcount) {
                         ds_length = data.rowcount;
-                    else
+                    } else {
                         ds_length = data.records.length;
+                    }
 
                     $scope.list.client_ds = data.records;
 
@@ -539,24 +620,30 @@
                         ds_length             = $scope.list.client_ds.length;
                     }
 
-                    if (options.sortable && options.sortOnClient)
+                    if (options.sortable && options.sortOnClient) {
                         $scope.list.client_ds = flexiListService.sortDataset($scope.list.client_ds, options.orderby, options.log);
+                    }
 
                     if (options.pagination) {
                         if (options.paginationOnClient) {
                             $scope.list.records         = flexiListService.pageDataset($scope.list.client_ds, offset, options.pagesize, options.log);
                             $scope.list.pagination_info = flexiListService.getPagination(ds_length, offset, options.pagesize, options.pages);
-                        }
-                        else {
+                        } else {
                             $scope.list.records = data.records;
 
                             // Follow the server response if an offset or pagesize is informed
                             var v_offset;
 
-                            if (data.offset) v_offset = data.offset;
-                            else v_offset = offset;
+                            if (data.offset) {
+                                v_offset = data.offset;
+                            }
+                            else {
+                                v_offset = offset;
+                            }
 
-                            if (data.pagesize) options.pagesize = data.pagesize;
+                            if (data.pagesize) {
+                                options.pagesize = data.pagesize;
+                            }
 
                             $scope.list.pagination_info = flexiListService.getPagination(ds_length, v_offset, options.pagesize, options.pages);
                         }
@@ -565,33 +652,39 @@
                         $scope.list.records = $scope.list.client_ds;
                     }
 
-                    if (data.result != 'OK')
+                    if (data.result != 'OK') {
                         $scope.$emit('flComplete', {result: 'ERROR', message: data.result});
-                    else
+                    } else {
                         $scope.$emit('flComplete', {result: 'OK'});
+                    }
                 },
                 function(reason) {
-                    if (options.log.err) $log.log(options.log.id + ' - Load Error: ' + reason);
+                    if (options.log.err) {
+                        $log.log(options.log.id + ' - Load Error: ' + reason);
+                    }
+
                     $scope.list.loadedDS = [];
                     $scope.list.records  = [];
                     $scope.$emit('flComplete', {result: 'ERROR', message: reason});
                 }
             );
-        };
+        }
 
         function change(p_options) {
             $scope.$emit('flStartOp', {op: 'change'});
             angular.extend(options, p_options);
 
             // Unselect all records
-            if (options.selectable) selectionApplyAll(false, false);
+            if (options.selectable) {
+                selectionApplyAll(false, false);
+            }
             // Reset to first page
             offset = 0;
 
             processDataset();
             sorted = transformSorted();
             $scope.$emit('flComplete', {result: 'OK'});
-        };
+        }
 
         function loadData() {
             $scope.$emit('flStartOp', {op: 'loadData'});
@@ -601,19 +694,19 @@
             if (options.data) {
                 loadInlineData();
                 $scope.$emit('flComplete', {result: 'OK'});
-            }
-            else if (options.jsonFile) {
+            } else if (options.jsonFile) {
                 loadJsonFile();
-            }
-            else if (options.listURL) {
+            } else if (options.listURL) {
                 loadFromServer();
-            }
-            else {
-                if (options.log.err) $log.log(options.log.id + ' - Undefined data source.');
+            } else {
+                if (options.log.err) {
+                    $log.log(options.log.id + ' - Undefined data source.');
+                }
+
                 $scope.$emit('flComplete', {result: 'ERROR', message: 'Undefined data source'});
             }
 
-        };
+        }
 
     }
 
