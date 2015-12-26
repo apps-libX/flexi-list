@@ -14,4 +14,6 @@
         'treasure-overlay-spinner'
     ]);
 
+    angular.module('flexiList', []);
+
 })();
