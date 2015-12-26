@@ -8,9 +8,9 @@
  * @private
  * @description
  *   Provides functions to:
- *        - Load data from server.
+ *    - Load data from server.
  *    - Load data from a JSON file.
- *        - Sort, filter, limit and page the dataset.
+ *    - Sort, filter, limit and page the dataset.
  */
 (function() {
     'use strict';
