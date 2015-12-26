@@ -21,7 +21,6 @@
         ////////////////
 
         function regexpFilter(value, pattern, options) {
-            //return parameters;
             if (value === undefined || pattern === undefined) {
                 return true;
             }
