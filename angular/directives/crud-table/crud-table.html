@@ -1,0 +1,215 @@
+<fl-main list="list"></fl-main>
+<treasure-overlay-spinner active="ct.busy">
+
+    <div layout="column" layout-align="start stretch">
+        <div flex="auto">
+            <div layout="row" layout-xs="column" layout-sm="column" layout-align="start stretch">
+                <div flex="auto" flex-order-xs="2" flex-order-sm="2" layout="row" layout-align="start end" ng-if="!list.isEmpty()">
+                    <!-- Controls -->
+                    <md-button class="md-icon-button" aria-label="{{'Refresh'|translate}}" ng-click="list.refresh();" ng-if="ct.options.refreshBtn">
+                        <md-icon ng-md-icon icon="refresh" style="fill: black" size="24"></md-icon>
+                        <md-tooltip md-direction="bottom">
+                            <translate>Refresh</translate>
+                        </md-tooltip>
+                    </md-button>
+                    <md-button class="md-icon-button" aria-label="{{'Add new record'|translate}}" ng-click="ct.options.addRecord();" ng-if="ct.options.addRecord">
+                        <md-icon ng-md-icon icon="add" style="fill: black" size="24"></md-icon>
+                        <md-tooltip md-direction="bottom">
+                            <translate>Add</translate>
+                        </md-tooltip>
+                    </md-button>
+                    <md-button ng-disabled="!list.getSelectedCount()" class="md-icon-button" aria-label="{{'Delete selected records'|translate}}" ng-click="ct.options.deleteRows(list.getSelectedRecords());" ng-if="ct.options.deleteRows">
+                        <md-icon ng-md-icon icon="remove" style="fill: black" size="24"></md-icon>
+                        <md-tooltip md-direction="bottom">
+                            <translate>Delete</translate>
+                        </md-tooltip>
+                    </md-button>
+                </div>
+                <div flex="auto" flex-order="1" layout="row" layout-align="end end">
+                    <!-- Select search field -->
+                    <md-menu md-offset="0 -7">
+                        <md-button aria-label="Select a field" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                            <md-icon ng-md-icon icon="unfold_more" style="fill: black" size="24"></md-icon>
+                            <md-tooltip md-direction="bottom">
+                                <translate>Select a field</translate>
+                            </md-tooltip>
+                        </md-button>
+                        <md-menu-content width="4">
+                            <md-menu-item ng-repeat="filter in ct.options.filters">
+                                <md-button ng-click="ct.setSearch(filter);">
+                                    <span md-menu-align-target ng-click="ct.setSearch(filter);"></span> {{filter.title}}
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                    <md-input-container style="margin-bottom: -10px;">
+                        <label for="searchField">{{'Select a field'|translate}}</label>
+                        <input type="text" id="searchField" aria-label="Search Field" ng-model="ct.search_field.title" readonly>
+                    </md-input-container>
+                    <!-- Enter search value -->
+                    <md-input-container style="margin-bottom: -10px;">
+                        <label for="searchValue">{{'Search for'|translate}}...</label>
+                        <input type="text" id="searchValue" aria-label="Search Value" ng-model="ct.search_value">
+                    </md-input-container>
+                    <md-button class="md-icon-button" aria-label="{{'Search'|translate}}" ng-click="ct.search(); $event.preventDefault();">
+                        <md-icon ng-md-icon icon="search" style="fill: black" size="24"></md-icon>
+                        <md-tooltip md-direction="bottom">
+                            <translate>Search</translate>
+                        </md-tooltip>
+                    </md-button>
+                </div>
+            </div>
+
+        </div>
+        <div flex="auto" ng-if="list.isEmpty()">
+            <div>
+                <p>
+                    <translate>NO DATA FOUND</translate>
+                <p>
+            </div>
+        </div>
+        <!--Table-->
+        <div flex="auto" ng-if="! list.isEmpty()">
+            <table>
+                <!-- Table header -->
+                <thead>
+                <tr>
+                    <th ng-if="list.selectEnabled()">
+                        <md-button class="md-icon-button" aria-label="{{ct.getCheckedStr()|translate}}" ng-click="list.toggleSelectAll();">
+                            <md-icon ng-md-icon icon="{{ct.getCheckedIcon('check_box_outline_blank', 'check_box')}}" style="fill: black" size="24" options='{"rotation": "random"}'></md-icon>
+                            <md-tooltip md-direction="bottom">{{ct.getCheckedStr()|translate}}</md-tooltip>
+                        </md-button>
+                    </th>
+                    <th ng-repeat="col in ct.options.cols" class="{{col.class}}">
+                        <span ng-if="ct.colIsSortable(col) == false">{{col.title}}</span>
+                        <table ng-if="ct.colIsSortable(col)">
+                            <tr>
+                                <td>{{col.title}}</td>
+                                <td>
+                                    <md-menu md-offset="0 -7">
+                                        <md-button aria-label="Option" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                                            <md-icon ng-md-icon icon="unfold_more" style="fill: black" size="24"></md-icon>
+                                            <md-tooltip md-direction="bottom">
+                                                <translate>Option</translate>
+                                            </md-tooltip>
+                                        </md-button>
+                                        <md-menu-content width="2">
+                                            <md-menu-item>
+                                                <md-button ng-click="ct.sort($event, col.field, 'asc');">
+                                                    <md-icon ng-md-icon icon="keyboard_arrow_up" style="fill: black" size="24">
+                                                        <md-tooltip md-direction="bottom">{{'Sort asc.'|translate}}</md-tooltip>
+                                                    </md-icon>Asc.
+                                                </md-button>
+                                            </md-menu-item>
+                                            <md-menu-item>
+                                                <md-button ng-click="ct.sort($event, col.field, 'desc');">
+                                                    <md-icon ng-md-icon icon="keyboard_arrow_down" style="fill: black" size="24">
+                                                        <md-tooltip md-direction="bottom">{{'Sort desc.'|translate}}</md-tooltip>
+                                                    </md-icon>Desc.
+                                                </md-button>
+                                            </md-menu-item>
+                                        </md-menu-content>
+                                    </md-menu>
+                                </td>
+                            </tr>
+                        </table>
+                    </th>
+                    <th ng-if="ct.options.actionsCol">
+                        <translate>Actions</translate>
+                    </th>
+                </tr>
+                </thead>
+                <!-- Table body -->
+                <tbody>
+                <tr ng-repeat="rec in list.records" ng-click="list.recordToggleSelect(rec);" ng-class="{info: rec.flSelected}">
+                    <!-- checkbox -->
+                    <td align="center" ng-if="list.selectEnabled()">
+                        <input type="checkbox" value="{{rec[ct.options.pk]}}" ng-model="rec.flSelected" ng-click="$event.stopPropagation();list.enforceSelection(rec);" ng-if="! rec.readonly">
+                    </td>
+                    <!-- data -->
+                    <td ng-repeat="col in ct.options.cols" class="{{col.class}}">
+                        <fl-field-display field="{{col.field}}" value="{{rec[col.field]}}"></fl-field-display>
+                    </td>
+                    <!-- actions -->
+                    <td ng-if="ct.options.actionsCol">
+                        <div layout="row">
+                            <md-button class="md-icon-button" ng-click="ct.options.editRecord(rec); $event.stopPropagation();" ng-if="ct.options.editRecord && ! rec.readonly">
+                                <md-icon ng-md-icon icon="edit" style="fill: black" size="24"></md-icon>
+                                <md-tooltip md-direction="bottom">{{'Edit record'|translate}}</md-tooltip>
+                            </md-button>
+                            <md-button class="md-icon-button" ng-click="ct.options.deleteRecord(rec); $event.stopPropagation();" ng-if="ct.options.deleteRecord && ! rec.readonly">
+                                <md-icon ng-md-icon icon="delete" style="fill: black" size="24"></md-icon>
+                                <md-tooltip md-direction="bottom">{{'Delete record'|translate}}</md-tooltip>
+                            </md-button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div flex="auto" layout="row" layout-align="start end" layout-margin layout-fill ng-if="! list.isEmpty()">
+            <div>
+                <translate>Selected rows</translate>
+                : {{list.getSelectedCount()}}
+            </div>
+        </div>
+
+        <div flex="auto">
+            <div layout="row" layout-xs="column" layout-sm="column" layout-align="start stretch" ng-if="! list.isEmpty()">
+                <!-- Pagination -->
+                <div flex="auto" layout="row" layout-align-xs="center center" layout-align-sm="center center" layout-align="start center" ng-if="list.paginationEnabled()">
+                    <!-- Angular UI Bootstrap pagination -->
+                    <pagination boundary-links="true" ng-change="ct.pageChanged()" ng-model="list.pagination_info.currpage" total-items="list.pagination_info.rowcount" items-per-page="list.pagination_info.pagesize" max-size="list.pagination_info.show_pages" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
+
+                    </pagination>
+                </div>
+                <!-- Page size -->
+                <div flex="auto" layout="row" layout-align-xs="center center" layout-align-sm="center center" layout-align="start end">
+                    <md-menu md-offset="0 -7">
+                        <md-button aria-label="Select a field" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                            <md-icon ng-md-icon icon="unfold_more" style="fill: black" size="24"></md-icon>
+                            <md-tooltip md-direction="bottom">{{'Select a value'|translate}}</md-tooltip>
+                        </md-button>
+                        <md-menu-content width="4">
+                            <md-menu-item ng-repeat="ps in ct.options.pagesizes">
+                                <md-button ng-click="list.setPageSize(ps);">
+                                    <span md-menu-align-target ng-click="list.setPageSize(ps);"></span> {{ps}}
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                    <md-input-container style="margin-bottom: -10px;">
+                        <label for="pageSize">{{'Select a value'|translate}}</label>
+                        <input type="text" id="pageSize" aria-label="Page Size" value="{{list.pagination_info.pagesize}}" readonly>
+                    </md-input-container>
+                </div>
+                <!-- Info -->
+                <div flex="auto" layout="row" layout-align-xs="center center" layout-align-sm="center center" layout-align="end center">
+                    <div>
+                        <translate>Showing</translate>
+                        {{list.pagination_info.firstrec}}
+                        <translate>to</translate>
+                        {{list.pagination_info.lastrec}}
+                        <translate>of</translate>
+                        {{list.pagination_info.rowcount}}
+                        <translate>entries</translate>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <md-divider></md-divider>
+        <div flex="auto">
+            <!-- Server response -->
+            <div ng-if="list.options.listURL && ct.options.debug">
+                <p>
+                    <translate>Server response</translate>
+                    :
+                </p>
+                <p>
+                <pre style="height:200px;scroll:auto;"><code>{{list.server_response | json: 2}}</code></pre>
+                </p>
+            </div>
+        </div>
+    </div>
+</treasure-overlay-spinner>
