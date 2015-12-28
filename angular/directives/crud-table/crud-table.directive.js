@@ -137,17 +137,3 @@
 
 })();
 
-/*
- .directive('crudTable', function() {
- return {
- restrict   : 'E',
- scope      : {
- list: '=',
- ct  : '='
- },
- controller : 'crudTableCtrl',
- templateUrl: function(elem, attr) {
- return attr.template;
- }
- };
- })*/
