@@ -6,6 +6,7 @@
             <div layout="row" layout-xs="column" layout-sm="column" layout-align="start stretch">
                 <div flex="auto" flex-order-xs="2" flex-order-sm="2" layout="row" layout-align="start end" ng-if="!list.isEmpty()">
                     <!-- Controls -->
+                    <div layout="row" hide-xs hide-sm>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
                     <md-button class="md-icon-button" aria-label="{{'Refresh'|translate}}" ng-click="list.refresh();" ng-if="ct.options.refreshBtn">
                         <md-icon ng-md-icon icon="refresh" style="fill: black" size="24"></md-icon>
                         <md-tooltip md-direction="bottom">
@@ -68,13 +69,14 @@
                 <p>
             </div>
         </div>
+        <md-divider></md-divider>
         <!--Table-->
         <div flex="auto" ng-if="! list.isEmpty()">
-            <table>
+            <table style="width:100%">
                 <!-- Table header -->
                 <thead>
                 <tr>
-                    <th ng-if="list.selectEnabled()">
+                    <th align="center" ng-if="list.selectEnabled()">
                         <md-button class="md-icon-button" aria-label="{{ct.getCheckedStr()|translate}}" ng-click="list.toggleSelectAll();">
                             <md-icon ng-md-icon icon="{{ct.getCheckedIcon('check_box_outline_blank', 'check_box')}}" style="fill: black" size="24" options='{"rotation": "random"}'></md-icon>
                             <md-tooltip md-direction="bottom">{{ct.getCheckedStr()|translate}}</md-tooltip>
@@ -132,7 +134,7 @@
                     </td>
                     <!-- actions -->
                     <td ng-if="ct.options.actionsCol">
-                        <div layout="row">
+                        <div layout="row" layout-align="center center">
                             <md-button class="md-icon-button" ng-click="ct.options.editRecord(rec); $event.stopPropagation();" ng-if="ct.options.editRecord && ! rec.readonly">
                                 <md-icon ng-md-icon icon="edit" style="fill: black" size="24"></md-icon>
                                 <md-tooltip md-direction="bottom">{{'Edit record'|translate}}</md-tooltip>
