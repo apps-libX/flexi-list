@@ -11,8 +11,7 @@
         'flexiList',
         'gettext',
         'ui.bootstrap',
-        'treasure-overlay-spinner',
-        'angularUtils.directives.dirPagination'
+        'treasure-overlay-spinner'
     ]);
 
     angular.module('flexiList', []);
